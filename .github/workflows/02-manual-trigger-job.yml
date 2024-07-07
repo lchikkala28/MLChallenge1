@@ -2,6 +2,8 @@ name: Manually trigger an Azure Machine Learning job
 
 on:
   push:
+    branches:
+      - main
   
 jobs:
   train:
@@ -24,5 +26,8 @@ jobs:
     #       az storage -h
     - name: Run training job
       run: az ml job create --file src/job.yml --resource-group reva_mlops --workspace-name ws_ml
+    - name: Placeholder
+      run: |
+        echo "Will add code checks here in next challenge"
 
 
