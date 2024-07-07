@@ -1,8 +1,8 @@
 name: Manually trigger an Azure Machine Learning job
 
 on:
-  workflow_dispatch:
-
+  push:
+  
 jobs:
   train:
     runs-on: ubuntu-latest
@@ -15,5 +15,7 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
+    - name: Run training job
+      run: az ml job create --file src/job.yml --resource-group reva_mlops --workspace-name ws_ml
 
 
