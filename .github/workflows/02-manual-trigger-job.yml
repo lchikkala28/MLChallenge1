@@ -15,14 +15,14 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: Azure CLI script
-      uses: azure/CLI@v1
-      with:
-        azcliversion: 2.0.72
-        inlineScript: |
-          az account show
-          az storage -h
-    # - name: Run training job
-    #   run: az ml job create --file src/job.yml --resource-group reva_mlops --workspace-name ws_ml
+    # - name: Azure CLI script
+    #   uses: azure/CLI@v1
+    #   with:
+    #     azcliversion: 2.0.72
+    #     inlineScript: |
+    #       az account show
+    #       az storage -h
+    - name: Run training job
+      run: az ml job create --file src/job.yml --resource-group reva_mlops --workspace-name ws_ml
 
 
