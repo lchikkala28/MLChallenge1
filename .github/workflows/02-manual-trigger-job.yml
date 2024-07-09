@@ -35,10 +35,10 @@ jobs:
     - name: lint code with flake8
       run: |
         flake8 src/model/train.py
-    - name: install pytest and pandas
+    - name: install pytest and requirements.txt
       run: |
         python -m pip install pytest
-        python -m pip install pandas
+        python -m pip install -r requirements.txt
     - name: unit test using pytest
       run: |
         pytest tests/
