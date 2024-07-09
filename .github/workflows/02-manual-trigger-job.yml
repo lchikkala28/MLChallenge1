@@ -26,8 +26,11 @@ jobs:
     #       az storage -h
     - name: Run training job for test on 09-07
       run: az ml job create --file src/job.yml --resource-group reva_mlops --workspace-name ws_ml
-    - name: Placeholder
+    - name: install flak8
       run: |
-        echo "Will add code checks here in next challenge"
+        python -m pip install flake8
+    - name: lint code with flake8
+      run: |
+          flake8 tests/datasets/foo.py
 
 
