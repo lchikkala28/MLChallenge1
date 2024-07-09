@@ -10,6 +10,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from mlflow.sklearn import autolog
 
+
 # define functions
 def main(args):
     # TO DO: enable autologging
@@ -41,14 +42,13 @@ def split_data(df, test_size=0.2):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size)
     return X_train, X_test, y_train, y_test
 
+
 def train_model(reg_rate, X_train, X_test, y_train, y_test):
- 
     # train model
     LogisticRegression(C=1/reg_rate, solver="liblinear").fit(X_train, y_train)
 
 
 def parse_args():
- 
     # setup arg parser
     parser = argparse.ArgumentParser()
 
@@ -64,9 +64,9 @@ def parse_args():
     # return args
     return args
 
+
 # run script
 if __name__ == "__main__":
- 
     # add space in logs
     print("\n\n")
     print("*" * 60)
