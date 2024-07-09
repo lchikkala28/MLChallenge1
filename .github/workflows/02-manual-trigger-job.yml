@@ -34,12 +34,12 @@ jobs:
         python -m pip install flake8
     - name: lint code with flake8
       run: |
-          flake8 src/model/train.py
+        flake8 src/model/train.py
     - name: install pytest
       run: |
-            python install pytest
+        python -m pip install pytest
     - name: unit test using pytest
       run: |
-          pytest tests/
+        pytest tests/
 
 
