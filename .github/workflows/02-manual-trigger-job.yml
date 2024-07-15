@@ -1,8 +1,8 @@
-name: Manually trigger an Azure Machine Learning job
+name: Manually trigger an Azure Machine Learning job5
 
 on:
   push:
-    branches: [ main ]
+    branches: [ dev ]
   # pull_request:
   #   branches: [ "main" ]
   
