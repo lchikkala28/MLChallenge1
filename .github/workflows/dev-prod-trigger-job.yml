@@ -53,7 +53,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: Run training job for dev
-      run: az ml job create --file src/job.yml --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev
+      run: az ml job create --file src/job.yml --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev --stream
   
 
   production:
@@ -81,6 +81,6 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: Run training job for prod
-      run: az ml job create --file src/job-prd.yml --resource-group reva_mlops_prd_rg --workspace-name ws_ml_prd
+      run: az ml job create --file src/job-prd.yml --resource-group reva_mlops_prd_rg --workspace-name ws_ml_prd --stream
 
 
