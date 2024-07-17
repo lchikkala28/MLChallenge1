@@ -1,4 +1,4 @@
-name: dev-job
+name: dev-prod-job
 
 on:
   push:
@@ -46,8 +46,8 @@ jobs:
         pytest tests/
     - name: List files in the development data directory
       run: ls -la experimentation
-    # - name: Train model on dev data
-    #   run: python src/model/train.py --training_data experimentation/data
+    - name: Install az ml extension
+      run: az extension add -n ml -y
     - name: Azure login
       uses: azure/login@v1
       with:
