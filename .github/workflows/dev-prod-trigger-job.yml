@@ -54,19 +54,18 @@ jobs:
       name: Run training job for dev
       run: |
         run_id=$(az ml job create --file src/job.yml --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev --query name -o tsv)
-        echo "Run ID is $run_id"
+        # echo "Run ID is $run_id"
         echo "RUN_ID=$run_id" >> $GITHUB_ENV
-    - name: Use Run ID
-      run: |
-          echo "The Azure ML job run ID is ${{ env.RUN_ID }}"
-    - name: get job list in dev      
-      run: |
-        az ml job list --query "[].{Name:name,Jobstatus:status}"  --output table --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev
+    # - name: Use Run ID
+    #   run: |
+    #       echo "The Azure ML job run ID is ${{ env.RUN_ID }}"
+    # - name: get job list in dev      
+    #   run: |
+    #     az ml job list --query "[].{Name:name,Jobstatus:status}"  --output table --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev
     - name: register model in dev      
       run: |
         echo "runId :${{ env.RUN_ID }}"
-        RunId = ${{ env.RUN_ID }}
-        az ml model create --name "sk-diabetes-model" --version 1 --path runs:/$RunId/model --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev
+        az ml model create --name "sk-diabetes-model" --version 1 --path runs:/${{ env.RUN_ID }}/model --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev
   
 
   production:
