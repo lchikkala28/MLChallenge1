@@ -53,17 +53,17 @@ jobs:
     - id: mljobid
       name: Run training job for dev
       run: |
-        run_id=$(az ml job create --file src/job.yml --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev --query name -o tsv --stream)
+        run_id=$(az ml job create --file src/job.yml --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev --query name -o tsv)
         echo "RUN_ID=$run_id" >> $GITHUB_ENV
-    # - name: Wait for job completion
-    #   run: |
-    #       status=$(az ml job show --name ${{ env.RUN_ID }} --query status -o tsv)
-    #       while [ "$status" != "Completed" ]; do
-    #         echo "Waiting for job to complete..."
-    #         sleep 60
-    #         status=$(az ml job show --name ${{ env.RUN_ID }} --query status -o tsv)
-    #       done
-    #       echo "Job completed."
+    - name: Wait for job completion
+      run: |
+          status=$(az ml job show --name ${{ env.RUN_ID }} --query status -o tsv)
+          while [ "$status" != "Completed" ]; do
+            echo "Waiting for job to complete..."
+            sleep 60
+            status=$(az ml job show --name ${{ env.RUN_ID }} --query status -o tsv)
+          done
+          echo "Job completed."
     - name: register model in dev      
       run: |
         echo "runId :${{ env.RUN_ID }}"
