@@ -67,7 +67,7 @@ jobs:
     - name: register model in dev      
       run: |
         echo "runId :${{ env.RUN_ID }}"
-        az ml model create --name sk-diabetes-model --version 1 --path runs:/{{ env.RUN_ID }}/model --type mlflow_model --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev
+        az ml model create --name sk-diabetes-model --version 1 --path runs:/${{ env.RUN_ID }}/model --type mlflow_model --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev
   
   production:
     runs-on: ubuntu-latest
