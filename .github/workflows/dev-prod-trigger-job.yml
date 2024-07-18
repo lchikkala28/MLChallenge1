@@ -63,8 +63,9 @@ jobs:
         $RunId = ${{ env.RUN_ID }}
         echo "new runId :" $RunId
         echo "runId :${{ env.RUN_ID }}"
+
         az ml model create --name sk-diabetes-model --version 1 --path runs:/$RunId/model --type mlflow_model --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev
-  
+ 
 
   production:
     runs-on: ubuntu-latest
