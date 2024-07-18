@@ -57,11 +57,11 @@ jobs:
         echo "RUN_ID=$run_id" >> $GITHUB_ENV
     - name: Wait for job completion
       run: |
-          status=$(az ml job show --name ${{ env.RUN_ID }} --query status -o tsv)
+          status=$(az ml job show --name ${{ env.RUN_ID }} --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev --query status -o tsv)
           while [ "$status" != "Completed" ]; do
             echo "Waiting for job to complete..."
             sleep 60
-            status=$(az ml job show --name ${{ env.RUN_ID }} --query status -o tsv)
+            status=$(az ml job show --name ${{ env.RUN_ID }} --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev --query status -o tsv)
           done
           echo "Job completed."
     - name: register model in dev      
