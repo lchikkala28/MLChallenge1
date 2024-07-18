@@ -53,13 +53,18 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: Run training job for dev
-      run: az ml job create --file src/job.yml --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev --stream
-    - name: register model in dev      
       run: |
-        $MODEL_NAME
+        az ml job create --file src/job.yml --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev --stream
         $RUN_ID
-        $MODEL_PATH  
-        az ml model create --name $MODEL_NAME --version 1 --path azureml://jobs/$RUN_ID/outputs/artifacts/$MODEL_PATH --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev
+        $MODEL_PATH
+        $MODEL_NAME
+        az ml model create --name "sk-diabetes-model" --version 1 --path azureml://jobs/$RUN_ID/outputs/artifacts/$MODEL_PATH --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev
+    # - name: register model in dev      
+    #   run: |
+    #     $MODEL_NAME
+    #     $RUN_ID
+    #     $MODEL_PATH  
+    #     az ml model create --name $MODEL_NAME --version 1 --path azureml://jobs/$RUN_ID/outputs/artifacts/$MODEL_PATH --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev
   
 
   production:
