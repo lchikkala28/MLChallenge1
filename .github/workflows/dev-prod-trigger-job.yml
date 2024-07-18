@@ -60,13 +60,12 @@ jobs:
     #     az ml job list --query "[].{Name:name,Jobstatus:status}"  --output table --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev
     - name: register model in dev      
       run: |
-        $RunId = ${{ env.RUN_ID }}
-        echo "new runId :" $RunId
+        $RunId = '${{ env.RUN_ID }}'
+        echo "new runId :" {{ $RunId }}
+        echo "new runId : {{ $RunId }}"
         echo "runId :${{ env.RUN_ID }}"
-
-        az ml model create --name sk-diabetes-model --version 1 --path runs:/$RunId/model --type mlflow_model --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev
- 
-
+        az ml model create --name sk-diabetes-model --version 1 --path runs:/{{ $RunId }}/model --type mlflow_model --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev
+  
   production:
     runs-on: ubuntu-latest
     needs: experiment
