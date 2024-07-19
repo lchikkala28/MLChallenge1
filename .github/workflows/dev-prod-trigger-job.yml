@@ -71,7 +71,7 @@ jobs:
     - name: create endpoint dev
       run:  az ml online-endpoint create --name diabetes-dev -f endpoint/create-endpoint.yml --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev
     - name: deploy model to endpoint dev
-      run:  az ml online-deployment create --name sklearn-deployment --endpoint diabetes-dev -f deployments/sklearn-deployment.yml --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev --all-traffic
+      run:  az ml online-deployment create --name sklearn-deployment --endpoint diabetes-dev -f deployments\sklearn-deployment.yml --resource-group reva_mlops_dev_rg --workspace-name ws_ml_dev --all-traffic
   production:
     runs-on: ubuntu-latest
     needs: experiment
