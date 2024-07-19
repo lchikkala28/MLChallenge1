@@ -4,7 +4,7 @@ endpoint_name: diabetes
 model:
   name: sk-diabetes-model
   version: 1
-  path: model
+  path: sk-diabetes-model/model
   type: mlflow_model
-instance_type: Standard_DS3_v2
+instance_type: Standard_E2s_v3
 instance_count: 1
